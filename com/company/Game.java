@@ -6,16 +6,12 @@ import java.util.Scanner;
 public class Game implements Runnable{
 
     enum State {
-        GAMESTART,
-        GAMEOUTPUT,
-        GAMEINPUT,
-        GAMEND,
+
     }
 
-    private State gameState = State.GAMESTART;
-    private State nextState;
+    private Gamestate gameState = Gamestate.GAMESTART;
+    private Gamestate nextState;
     private String nextInput = "";
-    private Scanner scanner;
 
     private Player player;
 
@@ -24,11 +20,15 @@ public class Game implements Runnable{
             switch (gameState) {
                 case GAMESTART:
                     init();
-                    nextState = State.GAMEINPUT;
+                    nextState = Gamestate.GAMEINPUT;
                     break;
                 case GAMEINPUT:
-                    System.out.println("THIS IS WHERE STORY HAPPENS IF I HAD ANY");
-                    nextState = State.GAMEND;
+                    Renderer.Display("me rendererererere");
+                    var s = Renderer.Input();
+                    Renderer.Display(s);
+                    s = Renderer.Input("ooff: ");
+                    Renderer.Display(s);
+                    nextState = Gamestate.GAMEND;
                     break;
                 case GAMEOUTPUT:
                     break;
@@ -47,10 +47,7 @@ public class Game implements Runnable{
     }
 
     private void init() {
-        scanner = new Scanner(System.in);
         player = new Player();
-
-
     }
 
 }
